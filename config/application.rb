@@ -75,6 +75,7 @@ module EpfPlay
 
     # sendgrid setup
     config.action_mailer.delivery_method = :smtp
+    config.action_mailer.default_url_options = { :host => 'epf-play.herokuapp.com' }
     ActionMailer::Base.smtp_settings = {
       :address        => 'smtp.sendgrid.net',
       :port           => '587',
