@@ -3,6 +3,8 @@ Feature: Sign in
   A user
   Should be able to sign in
 
+    # TODO problem when not run with @javascript
+    @wip
     Scenario: User is not signed up
       Given I do not exist as a user
       When I sign in with valid credentials
