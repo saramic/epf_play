@@ -1,3 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+
 class SenatorImporter
   SOURCE = "http://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos"
 

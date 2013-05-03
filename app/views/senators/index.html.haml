@@ -1,0 +1,5 @@
+- @senators.each do |senator|
+  .senator{id: dom_id(senator)}
+    %dl
+      %dt senator
+      %dd= senator.name
