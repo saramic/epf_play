@@ -54,7 +54,7 @@ When(/^I update the source$/) do |source_table|
   click_button 'Update Source'
 end
 
-Then(/^source update will fail with "(.*?)"$/) do |error_message|
+Then(/^source ([^ ]+) will fail with "(.*?)"$/) do |action, error_message|
   find('.alert').text.should =~ /#{error_message}/
 end
 

@@ -15,6 +15,11 @@ Feature: Sources
   #    And I am a curator # TODO authorisation
     When I go to create a new source
     And I create the source
+      | description | I am not sure of the source nor url |
+    Then source create will fail with "Source not created. Please review the messages below"
+
+    When I go to create a new source
+    And I create the source
       | title       | All current senators                                                |
       | url         | http://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos |
       | description | Full senator list maybe -1 for president.                           |
