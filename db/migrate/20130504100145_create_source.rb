@@ -6,9 +6,11 @@ class CreateSource < ActiveRecord::Migration
       t.text :parent_url
       t.text :description
       t.text :asset
-      t.text :asset_hash
+      t.text :hash_identifier
 
       t.timestamps
     end
+
+    add_index :sources, :hash_identifier
   end
 end

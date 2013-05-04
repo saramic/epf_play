@@ -2,5 +2,11 @@
 = f.text_field :url, readonly: !@source.new_record?
 -#= f.text_field :parent_url
 = f.text_area :description, rows: 8
-= f.file_field :asset
+
+- if f.object.asset.url
+  = f.label 'Asset', id: "source_asset_control_group", class: 'control_group' do
+    = link_to f.object.asset.url, f.object.asset.url
+- else
+  = f.file_field :asset
+
 -#= f.text_field :asset_hash, readonly: true

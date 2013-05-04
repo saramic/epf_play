@@ -39,10 +39,12 @@ ActiveRecord::Schema.define(:version => 20130504100145) do
     t.text     "parent_url"
     t.text     "description"
     t.text     "asset"
-    t.text     "asset_hash"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "hash_identifier"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
+
+  add_index "sources", ["hash_identifier"], :name => "index_sources_on_hash_identifier"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
