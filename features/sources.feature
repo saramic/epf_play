@@ -26,19 +26,25 @@ Feature: Sources
       | description | Full senator list maybe -1 for president. May be useful to show who will stay on. |
     Then the source will be updated successfully
 
-    # TODO fetch asset, maybe in a background task
+    When I update the source
+      | url | http://some.different.url/ |
+    Then the source will be updated successfully
+    And the update will not take place
+      | url | http://some.different.url/ |
 
-    # TODO duplicate - later create version
+# TODO fetch asset, maybe in a background task
+
+# TODO duplicate - later create version
 #    When I go to create a new source
 #    And I create the source
 #      | url         | http://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos |
 #    Then the source will not be created with error "dupliacate url" or "url exists, new version will be created if it is different"
 
-    # TODO url and/or title mandatory
+# TODO url and/or title mandatory
 #    When I go to create a new source
 #    And I create the source
 #      | description | Full senator list maybe -1 for president.                           |
 
-    # TODO generate title from url if none is supplied
+# TODO generate title from url if none is supplied
 
-    # TODO only allow edit of meta data, title/description not url/asset
+# TODO only allow edit of meta data, title/description not url/asset

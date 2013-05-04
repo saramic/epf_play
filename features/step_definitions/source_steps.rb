@@ -42,3 +42,15 @@ When(/^I update the source$/) do |source_table|
 
   click_button 'Update Source'
 end
+
+Then(/^source update will fail with "(.*?)"$/) do |error_message|
+  find('.alert').text.should =~ /#{error_message}/
+end
+
+Then(/^the update will not take place$/) do |source_table|
+  source_table.raw.each do |field, value|
+    @title = value if field == 'title'
+    find("#source_#{field}").value.should_not =~ /#{value}/
+  end
+end
+
