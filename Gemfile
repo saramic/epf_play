@@ -31,4 +31,5 @@ gem 'twitter_bootstrap_form_for'
 
 group :development do
   gem 'selenium-webdriver'
+  gem 'fakeweb'
 end

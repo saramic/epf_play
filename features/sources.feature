@@ -8,7 +8,9 @@ Feature: Sources
   version it if it has changed
 
   Scenario: Create a source
-    Given I exist as a user
+    Given that the URL for the source exists
+      | http://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos | Senator_photos.html |
+    And I exist as a user
     And I am logged in
   #    And I am a curator # TODO authorisation
     When I go to create a new source
@@ -17,6 +19,7 @@ Feature: Sources
       | url         | http://www.aph.gov.au/Senators_and_Members/Senators/Senators_photos |
       | description | Full senator list maybe -1 for president.                           |
     Then the source will be created successfully
+    And the url will be downloaded and stored
 
     When I go back to list sources
     Then I should see the source

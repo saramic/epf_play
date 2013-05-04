@@ -13,6 +13,9 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new(params[:source])
+    # TODO ultimately this should be a worker/delayedJob/externalSweepJob
+    url = URI.parse @source.url
+    @source.asset = Net::HTTP.get(url)
     if @source.save
       flash[:notice] = "Source \"#{@source}\" has been successfully created!"
       redirect_to edit_source_path @source
