@@ -1,1 +1,12 @@
-= link_to 'Add a Source', new_source_path, :class => [:btn]
+= link_to 'Add a Source', new_source_path, class: [:btn, 'btn-primary']
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Title
+      %th &nbsp;
+  %tbody
+    - @sources.each do |source|
+      %tr{id: dom_id(source)}
+        %td= source
+        %td= link_to 'Edit', edit_source_path(source), class: [:btn, 'btn-primary']

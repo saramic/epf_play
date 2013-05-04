@@ -18,6 +18,9 @@ Feature: Sources
       | description | Full senator list maybe -1 for president.                           |
     Then the source will be created successfully
 
+    When I go back to list sources
+    Then I should see the source
+
     # TODO fetch asset, maybe in a background task
 
     # TODO duplicate - later create version

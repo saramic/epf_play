@@ -15,4 +15,16 @@ end
 Then /^the source will be created successfully$/ do
   find('.alert').text.should =~ /Source "#{@title}" has been successfully created!/
   find('h1').text.should == @title
+  @source = Source.last
 end
+
+When(/^I go back to list sources$/) do
+  click_link 'cancel'
+end
+
+Then(/^I should see the source$/) do
+  within("#source_#{@source.id}") do
+    text.should =~ /#{@source}/
+  end
+end
+
