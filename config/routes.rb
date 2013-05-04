@@ -1,5 +1,6 @@
 EpfPlay::Application.routes.draw do
   resources :senators, :only => [:index]
+  resources :sources
 
   authenticated :user do
     root :to => 'home#index'

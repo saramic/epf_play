@@ -1,0 +1,8 @@
+%h1= @source
+= twitter_bootstrap_form_for @source, :html => {:multipart => true} do |f|
+  = render :partial => 'form', :locals => {:f => f}
+
+  .form-actions
+    = f.submit 'Add Source', :class => [:btn, :'btn-primary']
+    or
+    = link_to 'cancel', sources_path
