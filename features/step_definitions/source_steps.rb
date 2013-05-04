@@ -26,7 +26,7 @@ Then /^the source will be ([^ ]+) successfully$/ do |action|
 end
 
 Then /^the url will be downloaded and stored$/ do
-  @source.asset.should eql(File.read(@fake_file_name))
+  File.read(File.join(Rails.root, 'public', @source.asset.url)).should eql(File.read(@fake_file_name))
 end
 
 When(/^I go back to list sources$/) do

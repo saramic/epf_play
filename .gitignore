@@ -74,3 +74,6 @@ pickle-email-*.html
 **.swp
 
 *~
+
+# carrierwave uploads
+/public/uploads
