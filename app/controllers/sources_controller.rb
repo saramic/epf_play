@@ -21,14 +21,16 @@ class SourcesController < ApplicationController
       render :new
     end
   end
-  #
-  #def update
-  #  if @taxon.update_attributes(params[:taxon])
-  #    flash[:notice] = "Taxon \"#{@taxon}\" #{"with parent \"#{@taxon.parent}\" " unless @taxon.parent.nil?}has been successfully updated!"
-  #    redirect_to edit_administration_taxon_path  @taxon
-  #  else
-  #    respond_with @taxon, :location => edit_administration_taxon_path(@taxon)
-  #  end
-  #end
+
+  def update
+    @source = Source.find(params[:id])
+    if @source.update_attributes(params[:source])
+      flash[:notice] = "Source \"#{@source}\" has been successfully updated!"
+      redirect_to edit_source_path(@source)
+    else
+      flash[:error] = "Source not updated. Please review the messages below."
+      render :edit
+    end
+  end
 
 end

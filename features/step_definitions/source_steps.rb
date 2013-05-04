@@ -12,8 +12,8 @@ When /^I create the source$/ do |source_table|
   click_button 'Add Source'
 end
 
-Then /^the source will be created successfully$/ do
-  find('.alert').text.should =~ /Source "#{@title}" has been successfully created!/
+Then /^the source will be ([^ ]+) successfully$/ do |action|
+  find('.alert').text.should =~ /Source "#{@title}" has been successfully #{action}!/
   find('h1').text.should == @title
   @source = Source.last
 end
@@ -28,3 +28,17 @@ Then(/^I should see the source$/) do
   end
 end
 
+When(/^I edit the source$/) do
+  within("#source_#{@source.id}") do
+    click_link 'Edit'
+  end
+end
+
+When(/^I update the source$/) do |source_table|
+  source_table.raw.each do |field, value|
+    @title = value if field == 'title'
+    fill_in "source_#{field}", with: value
+  end
+
+  click_button 'Update Source'
+end

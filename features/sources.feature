@@ -21,6 +21,11 @@ Feature: Sources
     When I go back to list sources
     Then I should see the source
 
+    When I edit the source
+    And I update the source
+      | description | Full senator list maybe -1 for president. May be useful to show who will stay on. |
+    Then the source will be updated successfully
+
     # TODO fetch asset, maybe in a background task
 
     # TODO duplicate - later create version
