@@ -11,5 +11,9 @@ describe Party do
       before { party.name = nil }
       it {should_not be_valid}
     end
+
+    context 'same name' do
+      it { lambda{ Party.create!(name: party.name) }.should raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Name has already been taken') }
+    end
   end
 end

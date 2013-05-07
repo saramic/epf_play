@@ -1,17 +1,19 @@
 require 'csv'
+require 'open-uri'
 
 class TicketProcessor
-  def initialize source, csv_file=@source.asset.url
+  def initialize source
     @source = source
-    @csv_file = csv_file
   end
 
   def process
-    csv = CSV.open @csv_file
-    #csv = CSV.new '/Users/michael/work/me/epf_play/spec/fixtures/SenateGroupVotingTicketsDownload-15508.csv'
-    # TODO write custom headers processor or other to use headers: true and skip first line to access vars as row['OwnerGroupNm']
-    csv.drop(2).each do |row|
-      Party.create(name: row[2])
+    file = open(@source.asset.path)
+    file.readline # drop first line
+    party_count = 0
+    CSV.parse(file, headers: true).each do |row|
+      party = Party.create(name: row["OwnerGroupNm"])
+      party_count += 1 if party.errors.count == 0
     end
+    party_count
   end
 end

@@ -5,4 +5,10 @@ describe PartiesController do
     get :index
     response.should be_success
   end
+
+  describe :suggest do
+    before { get :suggest }
+    subject { assigns(:parties) }
+    it { should == [] }
+  end
 end

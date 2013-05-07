@@ -4,7 +4,7 @@ class PartiesController < ApplicationController
   end
 
   def suggest
-    @parties = Party.where("name ilike '%#{params[:q]}%'")
+    @parties = Party.suggest(params[:q])
     render json: @parties
   end
 

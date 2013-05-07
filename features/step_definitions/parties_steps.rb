@@ -1,5 +1,5 @@
-Given(/^that the (\d+) senate group voting ticket source is loaded$/) do |arg1|
-  FakeWeb.register_uri(:get, 'http://example.com', :body => open(File.join(Rails.root, %w(spec fixtures), 'SenateGroupVotingTicketsDownload-15508.csv')))
+Given(/^that the (\d+) senate group voting ticket source is loaded$/) do |year, file_contents|
+  FakeWeb.register_uri(:get, 'http://example.com', :body => file_contents)
   @source = Source.create(url: 'http://example.com')
 end
 
