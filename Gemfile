@@ -25,6 +25,7 @@ gem 'twitter_bootstrap_form_for'
 
 # File uploads
 gem 'carrierwave'
+gem 'fog'
 
 # development and test
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
