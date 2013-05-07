@@ -1,5 +1,10 @@
 EpfPlay::Application.routes.draw do
   resources :senators, :only => [:index]
+  resources :parties, :only => [:index] do
+    collection do
+      get :suggest
+    end
+  end
   resources :sources
 
   authenticated :user do
