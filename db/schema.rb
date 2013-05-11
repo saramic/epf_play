@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510095341) do
+ActiveRecord::Schema.define(:version => 20130511065108) do
 
   create_table "candidates", :force => true do |t|
     t.text     "given_name"
     t.text     "surname"
     t.integer  "aec_candidate_id", :null => false
     t.integer  "party_id",         :null => false
+    t.integer  "state_id",         :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -60,6 +61,10 @@ ActiveRecord::Schema.define(:version => 20130510095341) do
   end
 
   add_index "sources", ["hash_identifier"], :name => "index_sources_on_hash_identifier"
+
+  create_table "states", :force => true do |t|
+    t.text "short_name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

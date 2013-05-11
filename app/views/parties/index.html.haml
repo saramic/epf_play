@@ -1,4 +1,8 @@
 %h1 Parties
 %ul
   - @parties.each do |party|
-    %li= party
+    %li
+      - if @state
+        =link_to party, parties_by_path(@state.to_s, party)
+      - else
+        = party

@@ -1,0 +1,4 @@
+ROLES: ['admin']
+ADMIN_NAME: john
+ADMIN_EMAIL: john@example.com
+ADMIN_PASSWORD: password

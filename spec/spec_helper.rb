@@ -38,9 +38,11 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  SEEDED_TABLES = %w[states]
   
   config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :truncation, {:except => SEEDED_TABLES}
   end
   config.before(:each) do
     DatabaseCleaner.start

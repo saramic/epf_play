@@ -27,3 +27,31 @@ Then /^I should see the following candidates$/ do |candidates_table|
     text.should =~ /#{candidate_line[0]}/
   end
 end
+
+When /^I visit the homepage$/ do
+  visit root_path
+end
+
+When /^navigate by state "(.*?)"$/ do |state_name|
+  click_on state_name
+end
+
+Then /^I should (not )?see the party "(.*?)"$/ do |truth, party_name|
+  if truth == 'not '
+    text.should_not =~ /#{party_name}/
+  else
+    text.should =~ /#{party_name}/
+  end
+end
+
+When /^I navigate by party "(.*?)"$/ do |party_name|
+  click_on party_name
+end
+
+Then /^I should (not )?see the candidate "(.*?)"$/ do |truth, candidate_name|
+  if truth == 'not '
+    text.should_not =~ /#{candidate_name}/
+  else
+    text.should =~ /#{candidate_name}/
+  end
+end
