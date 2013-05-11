@@ -5,6 +5,7 @@ EpfPlay::Application.routes.draw do
       get :suggest
     end
   end
+  resources :candidates, :only => [:index]
   resources :sources
 
   authenticated :user do

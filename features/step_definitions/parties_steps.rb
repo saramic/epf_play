@@ -17,3 +17,13 @@ Then(/^I should see the following parties$/) do |parties_table|
     text.should =~ /#{parties_line[0]}/
   end
 end
+
+When /^I visit the candidates page$/ do
+  visit candidates_path
+end
+
+Then /^I should see the following candidates$/ do |candidates_table|
+  candidates_table.raw.each do |candidate_line|
+    text.should =~ /#{candidate_line[0]}/
+  end
+end
