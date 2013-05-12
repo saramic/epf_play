@@ -8,6 +8,13 @@ When(/^I process the source$/) do
   ticket_processor.process.should be_true
 end
 
+Given /^that the 2010 senate group voting ticket source is loaded and processed$/ do
+  FakeWeb.register_uri(:get, 'http://example.com', :body => File.read(File.join(Rails.root, %w(spec fixtures senate_group_vote_2010_sample.csv))))
+  @source = Source.create(url: 'http://example.com')
+  ticket_processor = TicketProcessor.new(@source)
+  ticket_processor.process.should be_true
+end
+
 When(/^I visit the parties page$/) do
   visit parties_path
 end
@@ -54,4 +61,30 @@ Then /^I should (not )?see the candidate "(.*?)"$/ do |truth, candidate_name|
   else
     text.should =~ /#{candidate_name}/
   end
+end
+
+Given /^I exist as an ([^ ]+) user$/ do |role|
+  create_user
+  @user.add_role role
+end
+
+Then /^I should (not )?be allowed to edit a party$/ do |truth|
+  if truth == 'not '
+    page.should_not have_content "Edit"
+  else
+    page.should have_content "Edit"
+    click_on 'Edit'
+  end
+end
+
+When(/^I update the party$/) do
+  fill_in "Homepage", :with => "http://example.party.com"
+  fill_in "Policies", :with => "http://example.party.com/policies"
+  fill_in "twitter", :with => "party1"
+  fill_in "facebook", :with => "https://facebook.com/Party1"
+  click_button "Update"
+end
+
+Then(/^I should see a party edited message$/) do
+  page.should have_content "You updated your party successfully."
 end

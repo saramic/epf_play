@@ -20,5 +20,8 @@
           = link_to listable, parties_by_path(listable.short_name)
         - if listable.class == Party
           = link_to listable, candidates_by_path(listable.to_param, @state && @state.short_name)
+          - if user_signed_in? && current_user.has_role?(:admin)
+            %br
+            = link_to 'Edit', edit_party_path(listable.to_param), :class => [:btn]
         - if listable.class == Candidate
           = listable

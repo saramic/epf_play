@@ -31,3 +31,15 @@ ACT,1,Party 5,,,22023,,HODGES,Robert,,PT2,Party 2,
     And I should not see the candidate "Soubhi ISKANDER"
     And I should not see the candidate "Robert HODGES"
 
+  Scenario: edit existing parties to add relevant information
+    Given that the 2010 senate group voting ticket source is loaded and processed
+    And I exist as an admin user
+    When I visit the parties page
+    Then I should not be allowed to edit a party
+
+    When I am logged in
+    And I visit the parties page
+    Then I should be allowed to edit a party
+
+    When I update the party
+    Then I should see a party edited message

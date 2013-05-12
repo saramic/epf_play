@@ -1,4 +1,6 @@
 class Party < ActiveRecord::Base
+  resourcify
+
   attr_accessible :name
 
   validates_presence_of :name

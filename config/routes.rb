@@ -1,6 +1,6 @@
 EpfPlay::Application.routes.draw do
   resources :senators, :only => [:index]
-  resources :parties, :only => [:index] do
+  resources :parties, :only => [:index, :edit, :update] do
     collection do
       get :suggest
     end

@@ -1,0 +1,8 @@
+%h1= @party
+= twitter_bootstrap_form_for @party, html: {multipart: true} do |f|
+  = render partial: 'form', locals: {f: f}
+
+  .form-actions
+    = f.submit 'Update Party', class: [:btn, 'btn-primary']
+    or
+    = link_to 'cancel', parties_path
