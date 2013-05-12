@@ -1,0 +1,10 @@
+%ul
+  - @listables.each do |listable|
+    %li
+      -# TODO use a decorator or similar for this
+      - if listable.class == State
+        = link_to listable, parties_by_path(listable.short_name)
+      - if listable.class == Party
+        = link_to listable, candidates_by_path(listable.to_param, @state && @state.short_name)
+      - if listable.class == Candidate
+        = listable

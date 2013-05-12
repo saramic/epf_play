@@ -5,12 +5,7 @@ class PartiesController < ApplicationController
     party = Party.find params[:party] if params[:party]
     scope = scope.representation_in(@state) if @state
     scope = scope.where(id: party) if party
-    @parties = scope.all
-    if party && @parties.count == 1
-      candidate_scope = @parties.first.candidates
-      candidate_scope = candidate_scope.where(state_id: @state) if @state
-      @parties = candidate_scope.all
-    end
+    @listables = scope.all
   end
 
   def suggest

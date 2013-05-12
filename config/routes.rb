@@ -5,8 +5,11 @@ EpfPlay::Application.routes.draw do
       get :suggest
     end
   end
-  match 'parties/:state/(:party)' => 'parties#index', :as => :parties_by
+  match 'parties/:state' => 'parties#index', :as => :parties_by
+
   resources :candidates, :only => [:index]
+  match 'candidates/:party/(:state)' => 'candidates#index', :as => :candidates_by
+
   resources :sources
 
   authenticated :user do

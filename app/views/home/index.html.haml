@@ -1,5 +1,1 @@
-%ul
-  - @listables.each do |listable|
-    %li
-      - if listable.class == State
-        = link_to listable, parties_by_path(listable.short_name)
+= render 'partial/listable'
