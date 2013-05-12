@@ -7,7 +7,7 @@ class TicketProcessor
   end
 
   def process
-    file = open(@source.asset.path)
+    file = open(@source.asset.url) rescue open(@source.asset.path) # TODO hack .url prod .path cucumber
     file.readline # drop first line
     counts = {parties: {}, candidates: {}}
     CSV.parse(file, headers: true).each do |row|
