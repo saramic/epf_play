@@ -1,15 +1,16 @@
-%ul.breadcrumb
-  - if @state
-    %li
-      = link_to @state.short_name, root_path
-      %span.divider /
-  - if @party
-    %li
-      = link_to @party, parties_by_path(@state && @state.short_name)
-      %span.divider /
-  - if @listables
-    %li.active
-      = @listables.first.class
+- if @state or @party
+  %ul.breadcrumb
+    - if @state
+      %li
+        = link_to @state.short_name, root_path
+        %span.divider /
+    - if @party
+      %li
+        = link_to @party, parties_by_path(@state && @state.short_name)
+        %span.divider /
+    - if @listables
+      %li.active
+        = @listables.first.class
 %ul.thumbnails
   - @listables.each do |listable|
     %li.span4
