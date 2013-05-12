@@ -1,6 +1,16 @@
 Epf Play
 ========================
 
+* Setup
+
+ADMIN_NAME=john ADMIN_EMAIL=johm@example.com ADMIN_PASSWORD=password ROLES=['admin'] RAILS_ENV=test rake db:reset
+
+confirm that the 8 states of Australia are created by the seeds file # TODO not sure why this is not working
+Add the first source which is required
+Source.create(url: 'http://results.aec.gov.au/15508/Website/Downloads/SenateGroupVotingTicketsDownload-15508.csv')
+process it
+TicketProcessor.new(Source.find_by_url('http://results.aec.gov.au/15508/Website/Downloads/SenateGroupVotingTicketsDownload-15508.csv')).process
+
 This application was generated with the rails_apps_composer gem:
 https://github.com/RailsApps/rails_apps_composer
 provided by the RailsApps Project:
