@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Candidate do
-  let(:candidate) { FactoryGirl.create(:candidate) }
+  let(:candidate) { FactoryGirl.create(:candidate, state: State.first) }
 
   describe :valid do
     subject { candidate }

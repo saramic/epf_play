@@ -21,11 +21,11 @@ puts 'user: ' << user.name
 user.confirm!
 user.add_role :admin
 
-State.create short_name: 'VIC'
-State.create short_name: 'NSW'
-State.create short_name: 'QLD'
-State.create short_name: 'WA'
-State.create short_name: 'ACT'
-State.create short_name: 'NT'
-State.create short_name: 'SA'
-State.create short_name: 'TAS'
+State.find_or_create_by_short_name short_name: 'VIC'
+State.find_or_create_by_short_name short_name: 'NSW'
+State.find_or_create_by_short_name short_name: 'QLD'
+State.find_or_create_by_short_name short_name: 'WA'
+State.find_or_create_by_short_name short_name: 'ACT'
+State.find_or_create_by_short_name short_name: 'NT'
+State.find_or_create_by_short_name short_name: 'SA'
+State.find_or_create_by_short_name short_name: 'TAS'
