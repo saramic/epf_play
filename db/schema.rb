@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511065108) do
+ActiveRecord::Schema.define(:version => 20130512052203) do
 
   create_table "candidates", :force => true do |t|
     t.text     "given_name"
@@ -27,6 +27,10 @@ ActiveRecord::Schema.define(:version => 20130511065108) do
     t.text     "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.text     "home_page"
+    t.text     "policies"
+    t.text     "twitter"
+    t.text     "facebook"
   end
 
   create_table "roles", :force => true do |t|
@@ -61,6 +65,16 @@ ActiveRecord::Schema.define(:version => 20130511065108) do
   end
 
   add_index "sources", ["hash_identifier"], :name => "index_sources_on_hash_identifier"
+
+  create_table "sources_referrers", :id => false, :force => true do |t|
+    t.integer "source_id"
+    t.string  "referrer_field_name"
+    t.integer "referrer_id"
+    t.string  "referrer_type"
+  end
+
+  add_index "sources_referrers", ["referrer_id", "source_id"], :name => "index_sources_referrers_on_referrer_id_and_source_id"
+  add_index "sources_referrers", ["source_id", "referrer_id"], :name => "index_sources_referrers_on_source_id_and_referrer_id"
 
   create_table "states", :force => true do |t|
     t.text "short_name"

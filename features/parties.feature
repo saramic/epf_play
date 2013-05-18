@@ -33,11 +33,10 @@ ACT,1,Party 5,,,22023,,HODGES,Robert,,PT2,Party 2,
 
   Scenario: edit existing parties to add relevant information
     Given that the 2010 senate group voting ticket source is loaded and processed
-    And I exist as an admin user
     When I visit the parties page
     Then I should not be allowed to edit a party
 
-    When I am logged in
+    When I am logged in as an admin user
     And I visit the parties page
     Then I should be allowed to edit a party
 

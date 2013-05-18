@@ -11,6 +11,7 @@ class Source < ActiveRecord::Base
   #has_many processor # TODO?
   #version # TODO uniq with url
 
+  has_many :sources_referrers
   before_validation :store_asset, :title_from_url
 
   def store_asset

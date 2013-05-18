@@ -7,7 +7,7 @@ class Candidate < ActiveRecord::Base
   belongs_to :party
   belongs_to :state
 
-  scope :suggest, lambda {|q| where("given_name ilike ? or surname ilikek ?", ["%#{q}%", "%#{q}%"])}
+  scope :suggest, lambda {|q| where("given_name ilike ? or surname ilike ?", "%#{q}%", "%#{q}%")}
 
   def to_s
     [given_name, surname].join(" ") + " #{state}"

@@ -63,28 +63,31 @@ Then /^I should (not )?see the candidate "(.*?)"$/ do |truth, candidate_name|
   end
 end
 
-Given /^I exist as an ([^ ]+) user$/ do |role|
+Given /^I am logged in as an ([^ ]+) user$/ do |role|
   create_user
   @user.add_role role
+  sign_in
 end
 
 Then /^I should (not )?be allowed to edit a party$/ do |truth|
-  if truth == 'not '
-    page.should_not have_content "Edit"
-  else
-    page.should have_content "Edit"
-    click_on 'Edit'
+  within(".thumbnails") do
+    if truth == 'not '
+      text.should_not have_content "Edit"
+    else
+      text.should have_content "Edit"
+      first(:link, 'Edit').click
+    end
   end
 end
 
 When(/^I update the party$/) do
-  fill_in "Homepage", :with => "http://example.party.com"
-  fill_in "Policies", :with => "http://example.party.com/policies"
-  fill_in "twitter", :with => "party1"
-  fill_in "facebook", :with => "https://facebook.com/Party1"
+  fill_in "party_home_page", :with => "http://example.party.com"
+  fill_in "party_policies", :with => "http://example.party.com/policies"
+  fill_in "party_twitter", :with => "party1"
+  fill_in "party_facebook", :with => "https://facebook.com/Party1"
   click_button "Update"
 end
 
 Then(/^I should see a party edited message$/) do
-  page.should have_content "You updated your party successfully."
+  page.should have_content "Party \"Socialist Alliance\" has been successfully updated!"
 end
