@@ -1,4 +1,6 @@
 class SourcesController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @sources = Source.all
   end

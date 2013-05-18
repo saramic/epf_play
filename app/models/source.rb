@@ -1,4 +1,6 @@
 class Source < ActiveRecord::Base
+  resourcify
+
   attr_accessible :title, :url, :description, :asset
   attr_readonly :url
 
