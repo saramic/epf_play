@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130519120514) do
 
   create_table "tickets", :force => true do |t|
     t.integer "ballot_id"
+    t.integer "party_id"
     t.text    "position"
   end
 

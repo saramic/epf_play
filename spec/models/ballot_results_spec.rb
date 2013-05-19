@@ -4,8 +4,9 @@ describe 'Ballot Results'do
   let(:state) { State.find_by_short_name('VIC') }
   let(:election) { Election.create(name: '2010 Federal Election') }
   let(:ballot) { Ballot.create(state: state, election: election) }
-  let(:ticket_a) { Ticket.create(ballot: ballot, position: 'A')}
-  let(:ticket_b) { Ticket.create(ballot: ballot, position: 'B')}
+  let(:party_a) { Party.create(name: 'Party A') }
+  let(:ticket_a) { Ticket.create(ballot: ballot, position: 'A', party: party_a) }
+  let(:ticket_b) { Ticket.create(ballot: ballot, position: 'B', party: Party.create(name: 'Party B')) }
   let(:ticket_ug) { Ticket.create(ballot: ballot, position: 'UG')} # un-grouped
 
   let(:ballot_position_a_0) { BallotPosition.create(ticket: ticket_a, position: 0, candidate: FactoryGirl.create(:candidate, state: state)) }
@@ -41,16 +42,20 @@ describe 'Ballot Results'do
 
   context 'a ballot has many tickets' do
     subject { ballot }
+    its(:election) { should eql(election) }
     its(:tickets) { should eql([ticket_a, ticket_b, ticket_ug])}
   end
 
   context 'a ticket has many positions' do
     subject { ticket_a }
+    its(:ballot) { should eql(ballot) }
     its(:ballot_positions) { should eql([ballot_position_a_0, ballot_position_a_1, ballot_position_a_2])}
+    its(:party) { should eql(party_a)}
   end
 
   context 'a ballot position can have many ordinal preferences' do
     subject { ballot_position_a_0 }
+    its(:ticket) { should eql(ticket_a) }
     its(:ordinal_preferences) { should eql([ordinal_preference_a_0]) }
   end
 

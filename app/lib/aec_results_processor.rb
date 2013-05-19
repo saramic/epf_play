@@ -13,7 +13,9 @@ class AecResultsProcessor
     CSV.parse(file, headers: true).each do |row|
       election = Election.find_or_create_by_name(election_name)
       ballot = Ballot.find_or_create_by_state_id_and_election_id(State.find_by_short_name(row['StateAb']).id, election.id)
-      ticket = Ticket.find_or_create_by_ballot_id_and_position(ballot.id, row['Ticket'])
+      ticket = Ticket.find_or_create_by_ballot_id_and_position(ballot.id, row['Ticket']) do |ticket|
+        ticket.party = Party.find_or_create_by_name(row['PartyName'])
+      end
       ballot_position = BallotPosition.find_or_create_by_ticket_id_and_position(ticket.id, row['BallotPosition']) do |ballot_position|
         #ballot_position.candidate_id = row['CandidateID'] # TODO make aec_candidate_id the default id ?
         ballot_position.candidate = Candidate.find_by_aec_candidate_id row['CandidateID']

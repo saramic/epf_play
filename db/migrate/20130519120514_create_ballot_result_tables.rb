@@ -12,6 +12,7 @@ class CreateBallotResultTables < ActiveRecord::Migration
 
     create_table(:tickets) do |t|
       t.references :ballot
+      t.references :party
       t.text :position
     end
 

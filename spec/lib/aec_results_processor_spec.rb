@@ -31,6 +31,7 @@ ACT,C,20838,1,\"HATFIELD DODDS, Lin\",The Greens,17010,291,81,1086,536,19004
       ticket_act_a = Ticket.find_by_position_and_state('A', state)
       ticket_act_b = Ticket.find_by_position_and_state('B', state)
       ticket_act_c = Ticket.find_by_position_and_state('C', state)
+      ticket_act_a.party.should eql(Party.find_by_name('Australian Labor Party'))
       ballot.tickets.should eql([ticket_act_a, ticket_act_b, ticket_act_c])
       ballot_position_act_a_0 = BallotPosition.find_by_candidate_id(22049)
       ballot_position_act_a_1 = BallotPosition.find_by_candidate_id(21065)
