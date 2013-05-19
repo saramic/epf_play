@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130512052203) do
+ActiveRecord::Schema.define(:version => 20130519120514) do
+
+  create_table "ballot_positions", :force => true do |t|
+    t.integer "ticket_id"
+    t.integer "candidate_id"
+    t.integer "position"
+  end
+
+  create_table "ballots", :force => true do |t|
+    t.integer "state_id"
+    t.integer "election_id"
+  end
 
   create_table "candidates", :force => true do |t|
     t.text     "given_name"
@@ -21,6 +32,19 @@ ActiveRecord::Schema.define(:version => 20130512052203) do
     t.integer  "state_id",         :null => false
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "elections", :force => true do |t|
+    t.text "name"
+    t.date "date"
+  end
+
+  create_table "ordinal_preferences", :force => true do |t|
+    t.integer  "ballot_position_id"
+    t.integer  "ordinal"
+    t.integer  "votes"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "parties", :force => true do |t|
@@ -68,9 +92,9 @@ ActiveRecord::Schema.define(:version => 20130512052203) do
 
   create_table "sources_referrers", :id => false, :force => true do |t|
     t.integer "source_id"
-    t.string  "referrer_field_name"
     t.integer "referrer_id"
     t.string  "referrer_type"
+    t.string  "referrer_field_name"
   end
 
   add_index "sources_referrers", ["referrer_id", "source_id"], :name => "index_sources_referrers_on_referrer_id_and_source_id"
@@ -78,6 +102,11 @@ ActiveRecord::Schema.define(:version => 20130512052203) do
 
   create_table "states", :force => true do |t|
     t.text "short_name"
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.integer "ballot_id"
+    t.text    "position"
   end
 
   create_table "users", :force => true do |t|
