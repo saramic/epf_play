@@ -10,6 +10,6 @@ class Candidate < ActiveRecord::Base
   scope :suggest, lambda {|q| where("given_name ilike ? or surname ilike ?", "%#{q}%", "%#{q}%")}
 
   def to_s
-    [given_name, surname].join(" ") + " #{state}"
+    [given_name, surname].join(" ")
   end
 end
