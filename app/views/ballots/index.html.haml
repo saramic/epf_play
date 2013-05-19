@@ -1,0 +1,11 @@
+%ul.thumbnails
+  - @tickets.each do |ticket|
+    %li.span2
+      .thumbnail
+        = ticket.position
+        = ticket.party
+        - ticket.ballot_positions.each do |ballot_position|
+          %br
+            = ballot_position.position
+            = ballot_position.candidate
+            = ballot_position.ordinal_preferences.last.votes

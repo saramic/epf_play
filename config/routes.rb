@@ -10,6 +10,8 @@ EpfPlay::Application.routes.draw do
   resources :candidates, :only => [:index]
   match 'candidates/:party/(:state)' => 'candidates#index', :as => :candidates_by
 
+  resources :ballots, :only => [:index]
+
   resources :sources
 
   authenticated :user do
